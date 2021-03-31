@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from food_app import views
+from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('foods/', views.FoodList.as_view())
+    path('foods/', include('food_app.urls'))
 ]
