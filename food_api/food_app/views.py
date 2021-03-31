@@ -9,7 +9,7 @@ class FoodList(APIView):
     def get(self, request):
         food = Food.objects.all()
         queryName = self.request.GET.get('name')
-        if(queryName is not None):
+        if queryName is not None:
             food = food.filter(name__contains=queryName)
-            serializer = FoodSerializer(food, many=True)
-            return Response(serializer.data)
+        serializer = FoodSerializer(food, many=True)
+        return Response(serializer.data)
