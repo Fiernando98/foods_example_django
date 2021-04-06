@@ -1,10 +1,8 @@
+from drf_query_filter import fields
+from rest_framework import viewsets
 
-from rest_framework.response import Response
-from .serializer import FoodSerializer
 from .models import Food
-from django.core.exceptions import ObjectDoesNotExist
-from rest_framework.exceptions import NotFound
-from rest_framework import status, viewsets
+from .serializer import FoodSerializer
 
 
 class FoodViewSet(viewsets.ModelViewSet):
@@ -12,3 +10,6 @@ class FoodViewSet(viewsets.ModelViewSet):
     serializer_class = FoodSerializer
     queryset = model.objects.all()
 
+    query_params = [
+        fields.Field('name', 'name__icontains'),
+    ]
